@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --green: #006233;
+  --green-dark: #004624;
+  --green-light: #0a8a4e;
+  --red: #d21034;
+  --sand: #f6f2e7;
+  --ink: #16241d;
+}
+
+html {
+  font-family: "Segoe UI", "Tahoma", "Cairo", "Tajawal", system-ui, -apple-system,
+    "DejaVu Sans", sans-serif;
+}
+
+body {
+  background: #f4f6f4;
+  color: var(--ink);
+  font-feature-settings: "tnum";
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3ccc5;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-white ring-1 ring-black/[0.06] shadow-[0_1px_3px_rgba(0,0,0,0.05)];
+  }
+  .card-pad {
+    border-radius: 1rem;
+    background: #fff;
+    --tw-ring-shadow: 0 0 0 1px rgb(0 0 0 / 0.06);
+    box-shadow:
+      var(--tw-ring-shadow),
+      0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 1.25rem;
+  }
+
+  /* shared button base */
+  .btn,
+  .btn-primary,
+  .btn-red,
+  .btn-outline,
+  .btn-ghost,
+  .btn-buy,
+  .btn-sell {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold
+      transition-all duration-150 ring-1 ring-transparent cursor-pointer select-none;
+  }
+  .btn:disabled,
+  .btn-primary:disabled,
+  .btn-red:disabled,
+  .btn-outline:disabled,
+  .btn-ghost:disabled,
+  .btn-buy:disabled,
+  .btn-sell:disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+  .btn-primary {
+    @apply bg-[#006233] text-white hover:bg-[#005230] active:scale-[0.98] shadow-[0_2px_8px_rgba(0,98,51,0.3)];
+  }
+  .btn-red {
+    @apply bg-[#d21034] text-white hover:bg-[#b40d2c] active:scale-[0.98];
+  }
+  .btn-outline {
+    @apply bg-white text-[#006233] ring-[#006233]/30 hover:bg-emerald-50;
+  }
+  .btn-ghost {
+    @apply bg-black/[0.04] text-slate-700 hover:bg-black/[0.08];
+  }
+  .btn-buy {
+    @apply bg-emerald-600 text-white hover:bg-emerald-700 active:scale-[0.98];
+  }
+  .btn-sell {
+    @apply bg-rose-600 text-white hover:bg-rose-700 active:scale-[0.98];
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm
+      outline-none transition focus:border-[#0a8a4e] focus:ring-2 focus:ring-emerald-500/20;
+  }
+  .label {
+    @apply block text-xs font-bold text-slate-500 mb-1.5;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[11px] font-bold ring-1 whitespace-nowrap;
+  }
+  .section-title {
+    @apply text-lg font-extrabold text-[#004624] flex items-center gap-2;
+  }
+  .th {
+    @apply text-[11px] font-bold uppercase tracking-wide text-slate-400 px-3 py-2 text-start;
+  }
+  .td {
+    @apply px-3 py-2.5 text-sm;
+  }
+  .nav-link {
+    @apply relative rounded-lg px-3 py-2 text-sm font-bold text-white/80 hover:text-white
+      transition-colors whitespace-nowrap;
+  }
+  .nav-link-active {
+    @apply bg-white/15 text-white;
+  }
+}
+
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(210, 16, 52, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 9px rgba(210, 16, 52, 0);
+  }
+}
+
+.pattern-bg {
+  background-image:
+    radial-gradient(circle at 85% -10%, rgba(255, 255, 255, 0.14), transparent 45%),
+    radial-gradient(circle at -10% 110%, rgba(255, 255, 255, 0.08), transparent 40%);
+}
+
+.depth-bar-bid {
+  background: linear-gradient(to left, rgba(16, 185, 129, 0.18), rgba(16, 185, 129, 0.02));
+}
+[dir="rtl"] .depth-bar-bid {
+  background: linear-gradient(to right, rgba(16, 185, 129, 0.18), rgba(16, 185, 129, 0.02));
+}
+.depth-bar-ask {
+  background: linear-gradient(to right, rgba(244, 63, 94, 0.18), rgba(244, 63, 94, 0.02));
+}
+[dir="rtl"] .depth-bar-ask {
+  background: linear-gradient(to left, rgba(244, 63, 94, 0.18), rgba(244, 63, 94, 0.02));
+}
